@@ -69,6 +69,7 @@ const sortProduct = () => {
     }
 }
 
+// filter for the category, subcategory also the search
 useEffect(() => {
     applyFilter()
 },[categroy, subCategroy, search, showSearch])
