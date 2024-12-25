@@ -7,9 +7,10 @@ import { assets } from '../assets/frontend_assets/assets';
 const Product = () => {
 
     const { productId } = useParams();
-    const {products} = useContext(ShopContext);
+    const {products, currency } = useContext(ShopContext);
     const [productData, setProductData] = useState(false);
     const [image, setImage] = useState("");
+    const [size, setSize] = useState("");
 
     const fetchProductData = async () => {
         products.map((item)=>{
@@ -65,8 +66,20 @@ const Product = () => {
                         <img src={assets.star_icon} alt="" className="w-3" />
                         <img src={assets.star_icon} alt="" className="w-3" />
                         <img src={assets.star_icon} alt="" className="w-3" />
-                        <img src={assets.star_icon} alt="" className="w-3" />
+                        <img src={assets.star_dull_icon} alt="" className="w-3" />
+                        <p className="pl-2">(122)</p>
                     </div>
+                    <p className="mt-5 tet-3xl font-medium">{currency}{productData.price}</p>
+                    <p className="mt-5 text-gray-500 md:w-4/5">{productData.description}</p>
+                    <div className="flexflex-col gap-4 my-8">
+                        <p>Select Size</p>
+                        <div className="flex gap-2">
+                            {productData.sizes.map((item, index)=>(
+                                <button onClick={()=>setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === size ? "border-orange-500" : ""}`} key={index}>{item}</button>
+                            ))}
+                        </div>
+                    </div>
+                    <button className="bg-black text-white px-8 py-3 text-sm active:bg-gray-500">ADD TO CART</button>
                 </div>    
         </div>
     </div>
